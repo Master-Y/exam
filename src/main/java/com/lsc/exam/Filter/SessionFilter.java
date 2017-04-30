@@ -17,7 +17,8 @@ public class SessionFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 不过滤的uri
-        String[] noFilter = new String[]{"/images","/js", "/css", "/login/tologin", "/login/mainframe", "/user/exist","/user/checkPassword", "/signcode","index.jsp"};
+        String[] noFilter = new String[]{"/images","/js", "/css", "/login/tologin", "/login/mainframe", "/user/exist","/user/checkPassword", "/signcode","index.jsp","swagger-ui.html","/webjars",
+                "configuration","swagger-resources","v2"};
         // 请求的uri
         String uri = request.getRequestURI();
         // 是否过滤

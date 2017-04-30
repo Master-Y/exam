@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheng.cms.dao.mapper.CmsArticleCategoryMapper">
-  <resultMap id="BaseResultMap" type="com.zheng.cms.dao.model.CmsArticleCategory">
-    <id column="article_category_id" jdbcType="INTEGER" property="articleCategoryId" />
-    <result column="article_id" jdbcType="INTEGER" property="articleId" />
-    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+<mapper namespace="com.lsc.exam.dao.mapper.TbTaotiMapper">
+  <resultMap id="BaseResultMap" type="com.lsc.exam.dao.model.TbTaoti">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="LessonID" jdbcType="BIGINT" property="lessonid" />
+    <result column="JoinTime" jdbcType="TIMESTAMP" property="jointime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    article_category_id, article_id, category_id
+    ID, Name, LessonID, JoinTime
   </sql>
-  <select id="selectByExample" parameterType="com.zheng.cms.dao.model.CmsArticleCategoryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.lsc.exam.dao.model.TbTaotiExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from cms_article_category
+    from tb_taoti
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,70 +90,79 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from cms_article_category
-    where article_category_id = #{articleCategoryId,jdbcType=INTEGER}
+    from tb_taoti
+    where ID = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from cms_article_category
-    where article_category_id = #{articleCategoryId,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_taoti
+    where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.zheng.cms.dao.model.CmsArticleCategoryExample">
-    delete from cms_article_category
+  <delete id="deleteByExample" parameterType="com.lsc.exam.dao.model.TbTaotiExample">
+    delete from tb_taoti
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.zheng.cms.dao.model.CmsArticleCategory">
-    insert into cms_article_category (article_category_id, article_id, category_id
-      )
-    values (#{articleCategoryId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}
-      )
+  <insert id="insert" parameterType="com.lsc.exam.dao.model.TbTaoti">
+    insert into tb_taoti (ID, Name, LessonID, 
+      JoinTime)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{lessonid,jdbcType=BIGINT}, 
+      #{jointime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zheng.cms.dao.model.CmsArticleCategory">
-    insert into cms_article_category
+  <insert id="insertSelective" parameterType="com.lsc.exam.dao.model.TbTaoti">
+    insert into tb_taoti
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="articleCategoryId != null">
-        article_category_id,
+      <if test="id != null">
+        ID,
       </if>
-      <if test="articleId != null">
-        article_id,
+      <if test="name != null">
+        Name,
       </if>
-      <if test="categoryId != null">
-        category_id,
+      <if test="lessonid != null">
+        LessonID,
+      </if>
+      <if test="jointime != null">
+        JoinTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="articleCategoryId != null">
-        #{articleCategoryId,jdbcType=INTEGER},
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
       </if>
-      <if test="articleId != null">
-        #{articleId,jdbcType=INTEGER},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
-        #{categoryId,jdbcType=INTEGER},
+      <if test="lessonid != null">
+        #{lessonid,jdbcType=BIGINT},
+      </if>
+      <if test="jointime != null">
+        #{jointime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.zheng.cms.dao.model.CmsArticleCategoryExample" resultType="java.lang.Long">
-    select count(*) from cms_article_category
+  <select id="countByExample" parameterType="com.lsc.exam.dao.model.TbTaotiExample" resultType="java.lang.Long">
+    select count(*) from tb_taoti
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update cms_article_category
+    update tb_taoti
     <set>
-      <if test="record.articleCategoryId != null">
-        article_category_id = #{record.articleCategoryId,jdbcType=INTEGER},
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.articleId != null">
-        article_id = #{record.articleId,jdbcType=INTEGER},
+      <if test="record.name != null">
+        Name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.categoryId != null">
-        category_id = #{record.categoryId,jdbcType=INTEGER},
+      <if test="record.lessonid != null">
+        LessonID = #{record.lessonid,jdbcType=BIGINT},
+      </if>
+      <if test="record.jointime != null">
+        JoinTime = #{record.jointime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -160,31 +170,36 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update cms_article_category
-    set article_category_id = #{record.articleCategoryId,jdbcType=INTEGER},
-      article_id = #{record.articleId,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER}
+    update tb_taoti
+    set ID = #{record.id,jdbcType=BIGINT},
+      Name = #{record.name,jdbcType=VARCHAR},
+      LessonID = #{record.lessonid,jdbcType=BIGINT},
+      JoinTime = #{record.jointime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zheng.cms.dao.model.CmsArticleCategory">
-    update cms_article_category
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsc.exam.dao.model.TbTaoti">
+    update tb_taoti
     <set>
-      <if test="articleId != null">
-        article_id = #{articleId,jdbcType=INTEGER},
+      <if test="name != null">
+        Name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="categoryId != null">
-        category_id = #{categoryId,jdbcType=INTEGER},
+      <if test="lessonid != null">
+        LessonID = #{lessonid,jdbcType=BIGINT},
+      </if>
+      <if test="jointime != null">
+        JoinTime = #{jointime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where article_category_id = #{articleCategoryId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zheng.cms.dao.model.CmsArticleCategory">
-    update cms_article_category
-    set article_id = #{articleId,jdbcType=INTEGER},
-      category_id = #{categoryId,jdbcType=INTEGER}
-    where article_category_id = #{articleCategoryId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.lsc.exam.dao.model.TbTaoti">
+    update tb_taoti
+    set Name = #{name,jdbcType=VARCHAR},
+      LessonID = #{lessonid,jdbcType=BIGINT},
+      JoinTime = #{jointime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
 </mapper>
