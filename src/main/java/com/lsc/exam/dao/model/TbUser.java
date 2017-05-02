@@ -3,7 +3,7 @@ package com.lsc.exam.dao.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbStudent implements Serializable {
+public class TbUser implements Serializable {
     private String id;
 
     private String name;
@@ -126,7 +126,7 @@ public class TbStudent implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        TbStudent other = (TbStudent) that;
+        TbUser other = (TbUser) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TbStudentExample implements Serializable {
+public class TbUserExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -18,7 +18,7 @@ public class TbStudentExample implements Serializable {
 
     private Integer offset;
 
-    public TbStudentExample() {
+    public TbUserExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

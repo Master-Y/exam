@@ -65,8 +65,8 @@
                                                                                                                                 <table tableName="tb_lesson" domainObjectName="TbLesson"></table>
                                                                                                                                 <table tableName="tb_manager" domainObjectName="TbManager"></table>
                                                                                                                                 <table tableName="tb_questions" domainObjectName="TbQuestions"></table>
-                                                                                                                                <table tableName="tb_student" domainObjectName="TbStudent"></table>
                                                                                                                                 <table tableName="tb_sturesult" domainObjectName="TbSturesult"></table>
                                                                                                                                 <table tableName="tb_taoti" domainObjectName="TbTaoti"></table>
+                                                                                                                                <table tableName="tb_user" domainObjectName="TbUser"></table>
                                                             </context>
 </generatorConfiguration>
