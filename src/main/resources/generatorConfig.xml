@@ -62,10 +62,12 @@
 
         <!-- 需要映射的表 -->
                                                                                 <table tableName="tb_chapter" domainObjectName="TbChapter"></table>
+                                                                                                                                <table tableName="tb_exam" domainObjectName="TbExam"></table>
+                                                                                                                                <table tableName="tb_exam_result" domainObjectName="TbExamResult"></table>
+                                                                                                                                <table tableName="tb_exam_student" domainObjectName="TbExamStudent"></table>
                                                                                                                                 <table tableName="tb_lesson" domainObjectName="TbLesson"></table>
-                                                                                                                                <table tableName="tb_manager" domainObjectName="TbManager"></table>
                                                                                                                                 <table tableName="tb_questions" domainObjectName="TbQuestions"></table>
-                                                                                                                                <table tableName="tb_sturesult" domainObjectName="TbSturesult"></table>
+                                                                                                                                <table tableName="tb_rule" domainObjectName="TbRule"></table>
                                                                                                                                 <table tableName="tb_taoti" domainObjectName="TbTaoti"></table>
                                                                                                                                 <table tableName="tb_user" domainObjectName="TbUser"></table>
                                                             </context>

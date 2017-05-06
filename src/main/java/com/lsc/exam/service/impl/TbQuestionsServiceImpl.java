@@ -25,5 +25,8 @@ public class TbQuestionsServiceImpl extends BaseServiceImpl<TbQuestionsMapper, T
 
     @Autowired
     TbQuestionsMapper tbQuestionsMapper;
-
+    @Autowired
+    public void setBaseMapper(){
+        super.setBaseMapper(tbQuestionsMapper);
+    }
 }

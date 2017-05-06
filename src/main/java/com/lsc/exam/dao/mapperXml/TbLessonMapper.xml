@@ -5,6 +5,7 @@
     <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="Name" jdbcType="VARCHAR" property="name" />
     <result column="JoinTime" jdbcType="TIMESTAMP" property="jointime" />
+    <result column="Status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, Name, JoinTime
+    ID, Name, JoinTime, Status
   </sql>
   <select id="selectByExample" parameterType="com.lsc.exam.dao.model.TbLessonExample" resultMap="BaseResultMap">
     select
@@ -106,10 +107,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.lsc.exam.dao.model.TbLesson">
-    insert into tb_lesson (ID, Name, JoinTime
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{jointime,jdbcType=TIMESTAMP}
-      )
+    insert into tb_lesson (ID, Name, JoinTime, 
+      Status)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{jointime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lsc.exam.dao.model.TbLesson">
     insert into tb_lesson
@@ -123,6 +124,9 @@
       <if test="jointime != null">
         JoinTime,
       </if>
+      <if test="status != null">
+        Status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -133,6 +137,9 @@
       </if>
       <if test="jointime != null">
         #{jointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -154,6 +161,9 @@
       <if test="record.jointime != null">
         JoinTime = #{record.jointime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.status != null">
+        Status = #{record.status,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,7 +173,8 @@
     update tb_lesson
     set ID = #{record.id,jdbcType=BIGINT},
       Name = #{record.name,jdbcType=VARCHAR},
-      JoinTime = #{record.jointime,jdbcType=TIMESTAMP}
+      JoinTime = #{record.jointime,jdbcType=TIMESTAMP},
+      Status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,13 +188,17 @@
       <if test="jointime != null">
         JoinTime = #{jointime,jdbcType=TIMESTAMP},
       </if>
+      <if test="status != null">
+        Status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lsc.exam.dao.model.TbLesson">
     update tb_lesson
     set Name = #{name,jdbcType=VARCHAR},
-      JoinTime = #{jointime,jdbcType=TIMESTAMP}
+      JoinTime = #{jointime,jdbcType=TIMESTAMP},
+      Status = #{status,jdbcType=INTEGER}
     where ID = #{id,jdbcType=BIGINT}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />

@@ -1,5 +1,6 @@
 package com.lsc.exam.base;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -44,6 +45,6 @@ public interface BaseService<Record, Example> {
 
 	int deleteByPrimaryKeys(String ids);
 
-	void initMapper();
+//	void initMapper();
 
 }

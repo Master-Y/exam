@@ -6,29 +6,37 @@ import java.util.Date;
 public class TbQuestions implements Serializable {
     private Long id;
 
-    private String subject;
+    private Integer type;
 
-    private String type;
+    private Double difficulty;
 
-    private Date jointime;
+    private String pointid;
 
-    private Integer lessonid;
+    private String stem;
 
-    private Long taotiid;
+    private String choice1;
 
-    private String optiona;
+    private String choice2;
 
-    private String optionb;
+    private String choice3;
 
-    private String optionc;
-
-    private String optiond;
+    private String choice4;
 
     private String answer;
 
-    private String note;
+    private String userid;
 
-    private Integer chapterid;
+    private Date createtime;
+
+    private String username;
+
+    private String knowledgename;
+
+    private Integer score;
+
+    private Integer status;
+
+    private Integer lessonid;
 
     private static final long serialVersionUID = 1L;
 
@@ -40,76 +48,68 @@ public class TbQuestions implements Serializable {
         this.id = id;
     }
 
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public Date getJointime() {
-        return jointime;
+    public Double getDifficulty() {
+        return difficulty;
     }
 
-    public void setJointime(Date jointime) {
-        this.jointime = jointime;
+    public void setDifficulty(Double difficulty) {
+        this.difficulty = difficulty;
     }
 
-    public Integer getLessonid() {
-        return lessonid;
+    public String getPointid() {
+        return pointid;
     }
 
-    public void setLessonid(Integer lessonid) {
-        this.lessonid = lessonid;
+    public void setPointid(String pointid) {
+        this.pointid = pointid;
     }
 
-    public Long getTaotiid() {
-        return taotiid;
+    public String getStem() {
+        return stem;
     }
 
-    public void setTaotiid(Long taotiid) {
-        this.taotiid = taotiid;
+    public void setStem(String stem) {
+        this.stem = stem;
     }
 
-    public String getOptiona() {
-        return optiona;
+    public String getChoice1() {
+        return choice1;
     }
 
-    public void setOptiona(String optiona) {
-        this.optiona = optiona;
+    public void setChoice1(String choice1) {
+        this.choice1 = choice1;
     }
 
-    public String getOptionb() {
-        return optionb;
+    public String getChoice2() {
+        return choice2;
     }
 
-    public void setOptionb(String optionb) {
-        this.optionb = optionb;
+    public void setChoice2(String choice2) {
+        this.choice2 = choice2;
     }
 
-    public String getOptionc() {
-        return optionc;
+    public String getChoice3() {
+        return choice3;
     }
 
-    public void setOptionc(String optionc) {
-        this.optionc = optionc;
+    public void setChoice3(String choice3) {
+        this.choice3 = choice3;
     }
 
-    public String getOptiond() {
-        return optiond;
+    public String getChoice4() {
+        return choice4;
     }
 
-    public void setOptiond(String optiond) {
-        this.optiond = optiond;
+    public void setChoice4(String choice4) {
+        this.choice4 = choice4;
     }
 
     public String getAnswer() {
@@ -120,20 +120,60 @@ public class TbQuestions implements Serializable {
         this.answer = answer;
     }
 
-    public String getNote() {
-        return note;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public Integer getChapterid() {
-        return chapterid;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setChapterid(Integer chapterid) {
-        this.chapterid = chapterid;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getKnowledgename() {
+        return knowledgename;
+    }
+
+    public void setKnowledgename(String knowledgename) {
+        this.knowledgename = knowledgename;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getLessonid() {
+        return lessonid;
+    }
+
+    public void setLessonid(Integer lessonid) {
+        this.lessonid = lessonid;
     }
 
     @Override
@@ -143,18 +183,22 @@ public class TbQuestions implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", subject=").append(subject);
         sb.append(", type=").append(type);
-        sb.append(", jointime=").append(jointime);
-        sb.append(", lessonid=").append(lessonid);
-        sb.append(", taotiid=").append(taotiid);
-        sb.append(", optiona=").append(optiona);
-        sb.append(", optionb=").append(optionb);
-        sb.append(", optionc=").append(optionc);
-        sb.append(", optiond=").append(optiond);
+        sb.append(", difficulty=").append(difficulty);
+        sb.append(", pointid=").append(pointid);
+        sb.append(", stem=").append(stem);
+        sb.append(", choice1=").append(choice1);
+        sb.append(", choice2=").append(choice2);
+        sb.append(", choice3=").append(choice3);
+        sb.append(", choice4=").append(choice4);
         sb.append(", answer=").append(answer);
-        sb.append(", note=").append(note);
-        sb.append(", chapterid=").append(chapterid);
+        sb.append(", userid=").append(userid);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", username=").append(username);
+        sb.append(", knowledgename=").append(knowledgename);
+        sb.append(", score=").append(score);
+        sb.append(", status=").append(status);
+        sb.append(", lessonid=").append(lessonid);
         sb.append("]");
         return sb.toString();
     }
@@ -172,18 +216,22 @@ public class TbQuestions implements Serializable {
         }
         TbQuestions other = (TbQuestions) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getSubject() == null ? other.getSubject() == null : this.getSubject().equals(other.getSubject()))
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
-            && (this.getJointime() == null ? other.getJointime() == null : this.getJointime().equals(other.getJointime()))
-            && (this.getLessonid() == null ? other.getLessonid() == null : this.getLessonid().equals(other.getLessonid()))
-            && (this.getTaotiid() == null ? other.getTaotiid() == null : this.getTaotiid().equals(other.getTaotiid()))
-            && (this.getOptiona() == null ? other.getOptiona() == null : this.getOptiona().equals(other.getOptiona()))
-            && (this.getOptionb() == null ? other.getOptionb() == null : this.getOptionb().equals(other.getOptionb()))
-            && (this.getOptionc() == null ? other.getOptionc() == null : this.getOptionc().equals(other.getOptionc()))
-            && (this.getOptiond() == null ? other.getOptiond() == null : this.getOptiond().equals(other.getOptiond()))
+            && (this.getDifficulty() == null ? other.getDifficulty() == null : this.getDifficulty().equals(other.getDifficulty()))
+            && (this.getPointid() == null ? other.getPointid() == null : this.getPointid().equals(other.getPointid()))
+            && (this.getStem() == null ? other.getStem() == null : this.getStem().equals(other.getStem()))
+            && (this.getChoice1() == null ? other.getChoice1() == null : this.getChoice1().equals(other.getChoice1()))
+            && (this.getChoice2() == null ? other.getChoice2() == null : this.getChoice2().equals(other.getChoice2()))
+            && (this.getChoice3() == null ? other.getChoice3() == null : this.getChoice3().equals(other.getChoice3()))
+            && (this.getChoice4() == null ? other.getChoice4() == null : this.getChoice4().equals(other.getChoice4()))
             && (this.getAnswer() == null ? other.getAnswer() == null : this.getAnswer().equals(other.getAnswer()))
-            && (this.getNote() == null ? other.getNote() == null : this.getNote().equals(other.getNote()))
-            && (this.getChapterid() == null ? other.getChapterid() == null : this.getChapterid().equals(other.getChapterid()));
+            && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
+            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
+            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+            && (this.getKnowledgename() == null ? other.getKnowledgename() == null : this.getKnowledgename().equals(other.getKnowledgename()))
+            && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getLessonid() == null ? other.getLessonid() == null : this.getLessonid().equals(other.getLessonid()));
     }
 
     @Override
@@ -191,18 +239,22 @@ public class TbQuestions implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getSubject() == null) ? 0 : getSubject().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
-        result = prime * result + ((getJointime() == null) ? 0 : getJointime().hashCode());
-        result = prime * result + ((getLessonid() == null) ? 0 : getLessonid().hashCode());
-        result = prime * result + ((getTaotiid() == null) ? 0 : getTaotiid().hashCode());
-        result = prime * result + ((getOptiona() == null) ? 0 : getOptiona().hashCode());
-        result = prime * result + ((getOptionb() == null) ? 0 : getOptionb().hashCode());
-        result = prime * result + ((getOptionc() == null) ? 0 : getOptionc().hashCode());
-        result = prime * result + ((getOptiond() == null) ? 0 : getOptiond().hashCode());
+        result = prime * result + ((getDifficulty() == null) ? 0 : getDifficulty().hashCode());
+        result = prime * result + ((getPointid() == null) ? 0 : getPointid().hashCode());
+        result = prime * result + ((getStem() == null) ? 0 : getStem().hashCode());
+        result = prime * result + ((getChoice1() == null) ? 0 : getChoice1().hashCode());
+        result = prime * result + ((getChoice2() == null) ? 0 : getChoice2().hashCode());
+        result = prime * result + ((getChoice3() == null) ? 0 : getChoice3().hashCode());
+        result = prime * result + ((getChoice4() == null) ? 0 : getChoice4().hashCode());
         result = prime * result + ((getAnswer() == null) ? 0 : getAnswer().hashCode());
-        result = prime * result + ((getNote() == null) ? 0 : getNote().hashCode());
-        result = prime * result + ((getChapterid() == null) ? 0 : getChapterid().hashCode());
+        result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
+        result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
+        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getKnowledgename() == null) ? 0 : getKnowledgename().hashCode());
+        result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getLessonid() == null) ? 0 : getLessonid().hashCode());
         return result;
     }
 }

@@ -15,12 +15,18 @@ public class BaseResult {
     // 数据结果集
     public Object data;
 
+    public BaseResult() {}
+
     public BaseResult(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
-
+    public BaseResult(ResultEnum result,Object data) {
+        this.code = result.getI();
+        this.message = result.getCode();
+        this.data = data;
+    }
     public int getCode() {
         return code;
     }

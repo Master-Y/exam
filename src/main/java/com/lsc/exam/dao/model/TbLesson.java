@@ -10,6 +10,8 @@ public class TbLesson implements Serializable {
 
     private Date jointime;
 
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -36,6 +38,14 @@ public class TbLesson implements Serializable {
         this.jointime = jointime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -45,6 +55,7 @@ public class TbLesson implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", jointime=").append(jointime);
+        sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
     }
@@ -63,7 +74,8 @@ public class TbLesson implements Serializable {
         TbLesson other = (TbLesson) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getJointime() == null ? other.getJointime() == null : this.getJointime().equals(other.getJointime()));
+            && (this.getJointime() == null ? other.getJointime() == null : this.getJointime().equals(other.getJointime()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -73,6 +85,7 @@ public class TbLesson implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getJointime() == null) ? 0 : getJointime().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }

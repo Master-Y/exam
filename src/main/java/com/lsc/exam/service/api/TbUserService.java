@@ -9,5 +9,8 @@ import com.lsc.exam.dao.model.TbUserExample;
 * Created by shuzheng on 2017/5/2.
 */
 public interface TbUserService extends BaseService<TbUser, TbUserExample> {
-
+//
+//}
+//public interface TbUserService  {
+//    public TbUser selectFirstByExample(TbUserExample example);
 }

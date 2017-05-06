@@ -25,5 +25,8 @@ public class TbLessonServiceImpl extends BaseServiceImpl<TbLessonMapper, TbLesso
 
     @Autowired
     TbLessonMapper tbLessonMapper;
-
+    @Autowired
+    public void setBaseMapper(){
+        super.setBaseMapper(tbLessonMapper);
+    }
 }

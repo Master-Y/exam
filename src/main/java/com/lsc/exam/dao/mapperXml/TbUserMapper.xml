@@ -11,6 +11,7 @@
     <result column="answer" jdbcType="VARCHAR" property="answer" />
     <result column="profession" jdbcType="VARCHAR" property="profession" />
     <result column="cardNo" jdbcType="INTEGER" property="cardno" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, name, pwd, sex, joinTime, question, answer, profession, cardNo
+    ID, name, pwd, sex, joinTime, question, answer, profession, cardNo, status
   </sql>
   <select id="selectByExample" parameterType="com.lsc.exam.dao.model.TbUserExample" resultMap="BaseResultMap">
     select
@@ -114,12 +115,12 @@
   <insert id="insert" parameterType="com.lsc.exam.dao.model.TbUser">
     insert into tb_user (ID, name, pwd, 
       sex, joinTime, question, 
-      answer, profession, cardNo
-      )
+      answer, profession, cardNo, 
+      status)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{jointime,jdbcType=TIMESTAMP}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, #{cardno,jdbcType=INTEGER}
-      )
+      #{answer,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, #{cardno,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.lsc.exam.dao.model.TbUser">
     insert into tb_user
@@ -151,6 +152,9 @@
       <if test="cardno != null">
         cardNo,
       </if>
+      <if test="status != null">
+        status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="cardno != null">
         #{cardno,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -218,6 +225,9 @@
       <if test="record.cardno != null">
         cardNo = #{record.cardno,jdbcType=INTEGER},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -233,7 +243,8 @@
       question = #{record.question,jdbcType=VARCHAR},
       answer = #{record.answer,jdbcType=VARCHAR},
       profession = #{record.profession,jdbcType=VARCHAR},
-      cardNo = #{record.cardno,jdbcType=INTEGER}
+      cardNo = #{record.cardno,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -265,6 +276,9 @@
       <if test="cardno != null">
         cardNo = #{cardno,jdbcType=INTEGER},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -277,7 +291,8 @@
       question = #{question,jdbcType=VARCHAR},
       answer = #{answer,jdbcType=VARCHAR},
       profession = #{profession,jdbcType=VARCHAR},
-      cardNo = #{cardno,jdbcType=INTEGER}
+      cardNo = #{cardno,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />

@@ -22,6 +22,8 @@ public class TbUser implements Serializable {
 
     private Integer cardno;
 
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 
     public String getId() {
@@ -96,6 +98,14 @@ public class TbUser implements Serializable {
         this.cardno = cardno;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -111,6 +121,7 @@ public class TbUser implements Serializable {
         sb.append(", answer=").append(answer);
         sb.append(", profession=").append(profession);
         sb.append(", cardno=").append(cardno);
+        sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
     }
@@ -135,7 +146,8 @@ public class TbUser implements Serializable {
             && (this.getQuestion() == null ? other.getQuestion() == null : this.getQuestion().equals(other.getQuestion()))
             && (this.getAnswer() == null ? other.getAnswer() == null : this.getAnswer().equals(other.getAnswer()))
             && (this.getProfession() == null ? other.getProfession() == null : this.getProfession().equals(other.getProfession()))
-            && (this.getCardno() == null ? other.getCardno() == null : this.getCardno().equals(other.getCardno()));
+            && (this.getCardno() == null ? other.getCardno() == null : this.getCardno().equals(other.getCardno()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -151,6 +163,7 @@ public class TbUser implements Serializable {
         result = prime * result + ((getAnswer() == null) ? 0 : getAnswer().hashCode());
         result = prime * result + ((getProfession() == null) ? 0 : getProfession().hashCode());
         result = prime * result + ((getCardno() == null) ? 0 : getCardno().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }

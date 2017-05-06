@@ -25,5 +25,8 @@ public class TbTaotiServiceImpl extends BaseServiceImpl<TbTaotiMapper, TbTaoti, 
 
     @Autowired
     TbTaotiMapper tbTaotiMapper;
-
+    @Autowired
+    public void setBaseMapper(){
+        super.setBaseMapper(tbTaotiMapper);
+    }
 }

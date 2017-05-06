@@ -25,5 +25,8 @@ public class TbChapterServiceImpl extends BaseServiceImpl<TbChapterMapper, TbCha
 
     @Autowired
     TbChapterMapper tbChapterMapper;
-
+    @Autowired
+    public void setBaseMapper(){
+        super.setBaseMapper(tbChapterMapper);
+    }
 }
