@@ -10,6 +10,7 @@
     <result column="studentName" jdbcType="VARCHAR" property="studentname" />
     <result column="teachId" jdbcType="VARCHAR" property="teachid" />
     <result column="teachName" jdbcType="VARCHAR" property="teachname" />
+    <result column="taotiId" jdbcType="INTEGER" property="taotiid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, questionId, answer, score, studentId, studentName, teachId, teachName
+    id, questionId, answer, score, studentId, studentName, teachId, teachName, taotiId
   </sql>
   <select id="selectByExample" parameterType="com.lsc.exam.dao.model.TbExamResultExample" resultMap="BaseResultMap">
     select
@@ -113,10 +114,12 @@
   <insert id="insert" parameterType="com.lsc.exam.dao.model.TbExamResult">
     insert into tb_exam_result (id, questionId, answer, 
       score, studentId, studentName, 
-      teachId, teachName)
+      teachId, teachName, taotiId
+      )
     values (#{id,jdbcType=INTEGER}, #{questionid,jdbcType=INTEGER}, #{answer,jdbcType=VARCHAR}, 
       #{score,jdbcType=INTEGER}, #{studentid,jdbcType=VARCHAR}, #{studentname,jdbcType=VARCHAR}, 
-      #{teachid,jdbcType=VARCHAR}, #{teachname,jdbcType=VARCHAR})
+      #{teachid,jdbcType=VARCHAR}, #{teachname,jdbcType=VARCHAR}, #{taotiid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lsc.exam.dao.model.TbExamResult">
     insert into tb_exam_result
@@ -145,6 +148,9 @@
       <if test="teachname != null">
         teachName,
       </if>
+      <if test="taotiid != null">
+        taotiId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -170,6 +176,9 @@
       </if>
       <if test="teachname != null">
         #{teachname,jdbcType=VARCHAR},
+      </if>
+      <if test="taotiid != null">
+        #{taotiid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -206,6 +215,9 @@
       <if test="record.teachname != null">
         teachName = #{record.teachname,jdbcType=VARCHAR},
       </if>
+      <if test="record.taotiid != null">
+        taotiId = #{record.taotiid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -220,7 +232,8 @@
       studentId = #{record.studentid,jdbcType=VARCHAR},
       studentName = #{record.studentname,jdbcType=VARCHAR},
       teachId = #{record.teachid,jdbcType=VARCHAR},
-      teachName = #{record.teachname,jdbcType=VARCHAR}
+      teachName = #{record.teachname,jdbcType=VARCHAR},
+      taotiId = #{record.taotiid,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -249,6 +262,9 @@
       <if test="teachname != null">
         teachName = #{teachname,jdbcType=VARCHAR},
       </if>
+      <if test="taotiid != null">
+        taotiId = #{taotiid,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -260,7 +276,8 @@
       studentId = #{studentid,jdbcType=VARCHAR},
       studentName = #{studentname,jdbcType=VARCHAR},
       teachId = #{teachid,jdbcType=VARCHAR},
-      teachName = #{teachname,jdbcType=VARCHAR}
+      teachName = #{teachname,jdbcType=VARCHAR},
+      taotiId = #{taotiid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />

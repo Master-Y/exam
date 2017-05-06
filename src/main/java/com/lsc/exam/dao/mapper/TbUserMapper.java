@@ -4,9 +4,7 @@ import com.lsc.exam.dao.model.TbUser;
 import com.lsc.exam.dao.model.TbUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface TbUserMapper {
     long countByExample(TbUserExample example);
 

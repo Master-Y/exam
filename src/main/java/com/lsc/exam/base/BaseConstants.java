@@ -13,5 +13,12 @@ public class BaseConstants {
     public static final int ALLOW = 1;
     //禁用
     public static final int NOTALLOW = 2;
+    //未考试
+    public static final int NOTEXAM = 1;
+    //未阅卷
+    public static final int NOTREMARK = 2;
+    //已阅卷
+    public static final int ISREMARK = 3;
+
 
 }

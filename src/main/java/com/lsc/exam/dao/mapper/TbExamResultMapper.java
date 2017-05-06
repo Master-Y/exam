@@ -4,9 +4,7 @@ import com.lsc.exam.dao.model.TbExamResult;
 import com.lsc.exam.dao.model.TbExamResultExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface TbExamResultMapper {
     long countByExample(TbExamResultExample example);
 

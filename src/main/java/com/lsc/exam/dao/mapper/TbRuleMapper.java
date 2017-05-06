@@ -4,9 +4,7 @@ import com.lsc.exam.dao.model.TbRule;
 import com.lsc.exam.dao.model.TbRuleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface TbRuleMapper {
     long countByExample(TbRuleExample example);
 
