@@ -43,7 +43,7 @@ public class UserController extends BaseController {
                                 @RequestParam(required=false,defaultValue = "1" ,value = "page") int page,
                                 HttpServletRequest request){
         TbUserExample tbUserExample = new TbUserExample();
-        TbUserExample.Criteria criteria = tbUserExample.createCriteria();
+        TbUserExample.Criteria criteria = tbUserExample.createCriteria().andStatusEqualTo(BaseConstants.ALLOW);
         if(user.getId() != null){
             criteria.andIdEqualTo(user.getId());
         }if(user.getName() != null){
@@ -56,8 +56,8 @@ public class UserController extends BaseController {
         int rows = 10;
         tbUserExample.setOffset((page - 1) * rows);
         tbUserExample.setLimit(rows);
-//        List<TbUser> tbUsers = tbUserService.selectByExample(tbUserExample);
-        TbUser tbUsers = tbUserService.selectFirstByExample(tbUserExample);
+        List<TbUser> tbUsers = tbUserService.selectByExample(tbUserExample);
+        /*TbUser tbUsers = tbUserService.selectFirstByExample(tbUserExample);*/
         if(tbUsers !=null){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,tbUsers);
             return result;
@@ -77,7 +77,7 @@ public class UserController extends BaseController {
         TbUser tbUser = tbUserService.selectFirstByExample(tbUserExample);
         if(tbUser == null){
             user.setId(UUID.randomUUID().toString().replace("-",""));
-            user.setPwd(MD5Util.MD5(user.getName()+user.getPwd()+BaseConstants.MD5_PWD_KEY));
+            user.setPwd(MD5Util.MD5(user.getCardno()+user.getCardno()+BaseConstants.MD5_PWD_KEY));
             user.setStatus(BaseConstants.ALLOW);
             int count = tbUserService.insertSelective(user);
             if(count == 1){
@@ -113,7 +113,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/removeUser")
     public BaseResult removeUser(TbUser user){
         user.setStatus(BaseConstants.NOTALLOW);
-        int count = tbUserService.updateByPrimaryKey(user);
+        int count = tbUserService.updateByPrimaryKeySelective(user);
         if(count == 1){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,null);
             return result;

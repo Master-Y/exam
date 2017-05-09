@@ -44,7 +44,7 @@ public class LessonController extends BaseController {
                                 @RequestParam(required=false,defaultValue = "1" ,value = "page") int page,
                                 HttpServletRequest request){
         TbLessonExample tbLessonExample = new TbLessonExample();
-        TbLessonExample.Criteria criteria = tbLessonExample.createCriteria();
+        TbLessonExample.Criteria criteria = tbLessonExample.createCriteria().andStatusEqualTo(BaseConstants.ALLOW);
         if(lesson.getId() != null){
             criteria.andIdEqualTo(lesson.getId());
         }if(lesson.getName() != null){
@@ -72,8 +72,10 @@ public class LessonController extends BaseController {
         criteria.andNameEqualTo(lesson.getName());
         TbLesson tbLesson = tbLessonService.selectFirstByExample(tbLessonExample);
         if(tbLesson == null){
+        	tbLesson = new TbLesson();
+        	tbLesson.setName(lesson.getName());
             tbLesson.setStatus(BaseConstants.ALLOW);
-            int count = tbLessonService.insertSelective(lesson);
+            int count = tbLessonService.insertSelective(tbLesson);
             if(count == 1){
                 BaseResult result = new BaseResult(ResultEnum.SUCCESS,null);
                 return result;
@@ -106,7 +108,7 @@ public class LessonController extends BaseController {
     @RequestMapping(value = "/removeLesson")
     public BaseResult removeLesson(TbLesson lesson){
         lesson.setStatus(BaseConstants.NOTALLOW);
-        int count = tbLessonService.updateByPrimaryKey(lesson);
+        int count = tbLessonService.updateByPrimaryKeySelective(lesson);
         if(count == 1){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,null);
             return result;

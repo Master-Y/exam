@@ -8,7 +8,7 @@ public class TbLesson implements Serializable {
 
     private String name;
 
-    private Date jointime;
+    private String jointime;
 
     private Integer status;
 
@@ -30,11 +30,11 @@ public class TbLesson implements Serializable {
         this.name = name;
     }
 
-    public Date getJointime() {
+    public String getJointime() {
         return jointime;
     }
 
-    public void setJointime(Date jointime) {
+    public void setJointime(String jointime) {
         this.jointime = jointime;
     }
 

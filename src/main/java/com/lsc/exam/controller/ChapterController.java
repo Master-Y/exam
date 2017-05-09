@@ -8,8 +8,11 @@ import com.lsc.exam.dao.model.TbChapter;
 import com.lsc.exam.dao.model.TbChapterExample;
 import com.lsc.exam.dao.model.TbLesson;
 import com.lsc.exam.dao.model.TbLessonExample;
+import com.lsc.exam.dao.model.TbQuestionsExample;
 import com.lsc.exam.service.api.TbChapterService;
 import com.lsc.exam.service.api.TbLessonService;
+import com.lsc.exam.service.api.TbQuestionsService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -34,6 +37,8 @@ public class ChapterController extends BaseController {
     private static Logger _log = LoggerFactory.getLogger(ChapterController.class);
     @Autowired
     private TbChapterService tbChapterService;
+    @Autowired
+    private TbQuestionsService questionsService;
 
     @ApiOperation(value = "查看章节")
     @ResponseBody
@@ -43,6 +48,8 @@ public class ChapterController extends BaseController {
                                   HttpServletRequest request){
         TbChapterExample tbChapterExample = new TbChapterExample();
         TbChapterExample.Criteria criteria = tbChapterExample.createCriteria();
+        TbQuestionsExample tbQuestionsExample = new TbQuestionsExample();
+        tbQuestionsExample.createCriteria().andLessonidEqualTo(chapter.getLessonid());
         if(chapter.getId() != null){
             criteria.andIdEqualTo(chapter.getId());
         }if(chapter.getLessonid() != null){
@@ -52,6 +59,7 @@ public class ChapterController extends BaseController {
         tbChapterExample.setOffset((page - 1) * rows);
         tbChapterExample.setLimit(rows);
         List<TbChapter> tbLessons = tbChapterService.selectByExample(tbChapterExample);
+        int count = questionsService.countByExample(tbQuestionsExample);
         if(tbLessons !=null){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,tbLessons);
             return result;

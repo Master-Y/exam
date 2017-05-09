@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -36,17 +38,22 @@ public class IndexController extends BaseController {
     private static Logger _log = LoggerFactory.getLogger(IndexController.class);
     @Autowired
     private TbUserService tbUserService;
-
+    /**
+     * 
+     * @param user(cardno,profession,pwd)
+     * @param requset
+     * @return result
+     */
     @ApiOperation(value = "登陆")
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public BaseResult login(TbUser user, HttpServletRequest requset) {
         TbUserExample tbUserExample = new TbUserExample();
-        tbUserExample.createCriteria().andNameEqualTo(user.getName()).andProfessionEqualTo(user.getProfession()).andPwdEqualTo(MD5Util.MD5(user.getName()+user.getPwd()+BaseConstants.MD5_PWD_KEY));
+        tbUserExample.createCriteria().andCardnoEqualTo(user.getCardno()).andProfessionEqualTo(user.getProfession()).andPwdEqualTo(MD5Util.MD5(user.getCardno()+user.getPwd()+BaseConstants.MD5_PWD_KEY));
         TbUser tbUser = tbUserService.selectFirstByExample(tbUserExample);
         if(tbUser != null){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,tbUser);
-            SessionUtil.setAttribute(requset,BaseConstants.SESSION_KEY_OBJ_USER_BEAN,tbUser);
+            /*SessionUtil.setAttribute(requset,BaseConstants.SESSION_KEY_OBJ_USER_BEAN,tbUser);*/
             return result;
         }else{
             BaseResult result = new BaseResult(ResultEnum.NOTEXIST,null);

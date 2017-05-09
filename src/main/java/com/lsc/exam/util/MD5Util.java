@@ -42,7 +42,7 @@ public class MD5Util {
         }
     }
     public static void main(String[] args){
-        System.out.println(MD5Util.MD5("王晶111ihaveadreamihaveagirlfriend"));
+        System.out.println(MD5Util.MD5("11091109ihaveadreamihaveagirlfriend"));
     }
 
 }

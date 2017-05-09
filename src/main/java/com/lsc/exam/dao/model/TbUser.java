@@ -12,7 +12,7 @@ public class TbUser implements Serializable {
 
     private String sex;
 
-    private Date jointime;
+    private String jointime;
 
     private String question;
 
@@ -58,11 +58,11 @@ public class TbUser implements Serializable {
         this.sex = sex;
     }
 
-    public Date getJointime() {
+    public String getJointime() {
         return jointime;
     }
 
-    public void setJointime(Date jointime) {
+    public void setJointime(String jointime) {
         this.jointime = jointime;
     }
 
