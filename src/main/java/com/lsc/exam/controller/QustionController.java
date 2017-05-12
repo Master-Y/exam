@@ -36,7 +36,7 @@ public class QustionController extends BaseController {
 
     @ApiOperation(value = "查看题目")
     @ResponseBody
-    @RequestMapping(value = "/querychapter")
+    @RequestMapping(value = "/queryquestion")
     public BaseResult querychapter(TbQuestions questions,
                                    @RequestParam(required=false,defaultValue = "1" ,value = "page") int page,
                                    HttpServletRequest request){
@@ -62,15 +62,16 @@ public class QustionController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "添加课程")
+    @ApiOperation(value = "添加问题")
     @ResponseBody
-    @RequestMapping(value = "/insertchapter")
+    @RequestMapping(value = "/insertquestion")
     public BaseResult insertchapter(TbQuestions questions){
         TbQuestionsExample tbQuestionsExample= new TbQuestionsExample();
         TbQuestionsExample.Criteria criteria = tbQuestionsExample.createCriteria();
         criteria.andStemEqualTo(questions.getStem());
         TbQuestions tbQuestions = tbQuestionsService.selectFirstByExample(tbQuestionsExample);
         if(tbQuestions == null){
+        	tbQuestions = new TbQuestions();
             tbQuestions.setStatus(BaseConstants.ALLOW);
             int count = tbQuestionsService.insertSelective(questions);
             if(count == 1){
@@ -86,9 +87,9 @@ public class QustionController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "编辑用户")
+    @ApiOperation(value = "编辑问题")
     @ResponseBody
-    @RequestMapping(value = "/editchapter")
+    @RequestMapping(value = "/editquestion")
     public BaseResult editchapter(TbQuestions questions){
         int count = tbQuestionsService.updateByPrimaryKey(questions);
         if(count == 1){
@@ -100,12 +101,12 @@ public class QustionController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "删除用户")
+    @ApiOperation(value = "删除问题")
     @ResponseBody
-    @RequestMapping(value = "/removechapter")
+    @RequestMapping(value = "/removequestion")
     public BaseResult removechapter(TbQuestions questions){
         questions.setStatus(BaseConstants.NOTALLOW);
-        int count = tbQuestionsService.updateByPrimaryKey(questions);
+        int count = tbQuestionsService.updateByPrimaryKeySelective(questions);
         if(count == 1){
             BaseResult result = new BaseResult(ResultEnum.SUCCESS,null);
             return result;

@@ -3620,7 +3620,6 @@ table.table-mail tr td {
 
 .ibox-content {
 	clear: both;
-	height: 250px;
     overflow-y: auto;
 }
 
@@ -7258,5 +7257,18 @@ body.skin-3 {
 	font-size:20px;
 	letter-spacing:6px;
 	font-weight:bold
+	
+}
+.ifixed{
+	float: right;
+	color: white;
+	margin: auto;
+	font-size:20px;
+	right:20px;
+	margin-top: 10px;
+	background-color: #18A689;
+	height: 40px;position: fixed;
+	z-index: 300;
+	border-radius:4px;
 	
 }
