@@ -2,7 +2,6 @@ package com.lsc.exam.dao.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Map;
 
 public class TbChapter implements Serializable {
     private Integer id;
@@ -14,8 +13,6 @@ public class TbChapter implements Serializable {
     private Date jointime;
 
     private Integer status;
-    
-    private Map qcMap;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,15 +56,7 @@ public class TbChapter implements Serializable {
         this.status = status;
     }
 
-    public Map getQcMap() {
-		return qcMap;
-	}
-
-	public void setQcMap(Map qcMap) {
-		this.qcMap = qcMap;
-	}
-
-	@Override
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());

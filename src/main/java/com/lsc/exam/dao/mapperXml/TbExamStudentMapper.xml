@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.lsc.exam.dao.model.TbExamStudent">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="taotiId" jdbcType="INTEGER" property="taotiid" />
-    <result column="taotiName" jdbcType="INTEGER" property="taotiname" />
+    <result column="taotiName" jdbcType="VARCHAR" property="taotiname" />
     <result column="studentId" jdbcType="VARCHAR" property="studentid" />
     <result column="studentName" jdbcType="VARCHAR" property="studentname" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -102,7 +102,7 @@
     insert into tb_exam_student (id, taotiId, taotiName, 
       studentId, studentName, status
       )
-    values (#{id,jdbcType=INTEGER}, #{taotiid,jdbcType=INTEGER}, #{taotiname,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{taotiid,jdbcType=INTEGER}, #{taotiname,jdbcType=VARCHAR}, 
       #{studentid,jdbcType=VARCHAR}, #{studentname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
@@ -136,7 +136,7 @@
         #{taotiid,jdbcType=INTEGER},
       </if>
       <if test="taotiname != null">
-        #{taotiname,jdbcType=INTEGER},
+        #{taotiname,jdbcType=VARCHAR},
       </if>
       <if test="studentid != null">
         #{studentid,jdbcType=VARCHAR},
@@ -165,7 +165,7 @@
         taotiId = #{record.taotiid,jdbcType=INTEGER},
       </if>
       <if test="record.taotiname != null">
-        taotiName = #{record.taotiname,jdbcType=INTEGER},
+        taotiName = #{record.taotiname,jdbcType=VARCHAR},
       </if>
       <if test="record.studentid != null">
         studentId = #{record.studentid,jdbcType=VARCHAR},
@@ -185,7 +185,7 @@
     update tb_exam_student
     set id = #{record.id,jdbcType=INTEGER},
       taotiId = #{record.taotiid,jdbcType=INTEGER},
-      taotiName = #{record.taotiname,jdbcType=INTEGER},
+      taotiName = #{record.taotiname,jdbcType=VARCHAR},
       studentId = #{record.studentid,jdbcType=VARCHAR},
       studentName = #{record.studentname,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER}

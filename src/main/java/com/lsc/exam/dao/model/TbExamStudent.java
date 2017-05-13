@@ -7,7 +7,7 @@ public class TbExamStudent implements Serializable {
 
     private Integer taotiid;
 
-    private Integer taotiname;
+    private String taotiname;
 
     private String studentid;
 
@@ -33,11 +33,11 @@ public class TbExamStudent implements Serializable {
         this.taotiid = taotiid;
     }
 
-    public Integer getTaotiname() {
+    public String getTaotiname() {
         return taotiname;
     }
 
-    public void setTaotiname(Integer taotiname) {
+    public void setTaotiname(String taotiname) {
         this.taotiname = taotiname;
     }
 

@@ -12,8 +12,6 @@ public class TbQuestions implements Serializable {
 
     private String pointid;
 
-    private String stem;
-
     private String choice1;
 
     private String choice2;
@@ -37,6 +35,8 @@ public class TbQuestions implements Serializable {
     private Integer status;
 
     private Integer lessonid;
+
+    private String stem;
 
     private static final long serialVersionUID = 1L;
 
@@ -70,14 +70,6 @@ public class TbQuestions implements Serializable {
 
     public void setPointid(String pointid) {
         this.pointid = pointid;
-    }
-
-    public String getStem() {
-        return stem;
-    }
-
-    public void setStem(String stem) {
-        this.stem = stem;
     }
 
     public String getChoice1() {
@@ -176,6 +168,14 @@ public class TbQuestions implements Serializable {
         this.lessonid = lessonid;
     }
 
+    public String getStem() {
+        return stem;
+    }
+
+    public void setStem(String stem) {
+        this.stem = stem;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -186,7 +186,6 @@ public class TbQuestions implements Serializable {
         sb.append(", type=").append(type);
         sb.append(", difficulty=").append(difficulty);
         sb.append(", pointid=").append(pointid);
-        sb.append(", stem=").append(stem);
         sb.append(", choice1=").append(choice1);
         sb.append(", choice2=").append(choice2);
         sb.append(", choice3=").append(choice3);
@@ -199,6 +198,7 @@ public class TbQuestions implements Serializable {
         sb.append(", score=").append(score);
         sb.append(", status=").append(status);
         sb.append(", lessonid=").append(lessonid);
+        sb.append(", stem=").append(stem);
         sb.append("]");
         return sb.toString();
     }
@@ -219,7 +219,6 @@ public class TbQuestions implements Serializable {
             && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getDifficulty() == null ? other.getDifficulty() == null : this.getDifficulty().equals(other.getDifficulty()))
             && (this.getPointid() == null ? other.getPointid() == null : this.getPointid().equals(other.getPointid()))
-            && (this.getStem() == null ? other.getStem() == null : this.getStem().equals(other.getStem()))
             && (this.getChoice1() == null ? other.getChoice1() == null : this.getChoice1().equals(other.getChoice1()))
             && (this.getChoice2() == null ? other.getChoice2() == null : this.getChoice2().equals(other.getChoice2()))
             && (this.getChoice3() == null ? other.getChoice3() == null : this.getChoice3().equals(other.getChoice3()))
@@ -231,7 +230,8 @@ public class TbQuestions implements Serializable {
             && (this.getKnowledgename() == null ? other.getKnowledgename() == null : this.getKnowledgename().equals(other.getKnowledgename()))
             && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getLessonid() == null ? other.getLessonid() == null : this.getLessonid().equals(other.getLessonid()));
+            && (this.getLessonid() == null ? other.getLessonid() == null : this.getLessonid().equals(other.getLessonid()))
+            && (this.getStem() == null ? other.getStem() == null : this.getStem().equals(other.getStem()));
     }
 
     @Override
@@ -242,7 +242,6 @@ public class TbQuestions implements Serializable {
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getDifficulty() == null) ? 0 : getDifficulty().hashCode());
         result = prime * result + ((getPointid() == null) ? 0 : getPointid().hashCode());
-        result = prime * result + ((getStem() == null) ? 0 : getStem().hashCode());
         result = prime * result + ((getChoice1() == null) ? 0 : getChoice1().hashCode());
         result = prime * result + ((getChoice2() == null) ? 0 : getChoice2().hashCode());
         result = prime * result + ((getChoice3() == null) ? 0 : getChoice3().hashCode());
@@ -255,6 +254,7 @@ public class TbQuestions implements Serializable {
         result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getLessonid() == null) ? 0 : getLessonid().hashCode());
+        result = prime * result + ((getStem() == null) ? 0 : getStem().hashCode());
         return result;
     }
 }

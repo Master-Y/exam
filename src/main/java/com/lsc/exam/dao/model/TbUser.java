@@ -12,12 +12,17 @@ public class TbUser implements Serializable {
 
     private String sex;
 
-    private String jointime;
+    private Date jointime;
 
     private String question;
 
     private String answer;
 
+    /**
+     * 职位 1管理员 2教师 3学生
+     *
+     * @mbg.generated
+     */
     private String profession;
 
     private Integer cardno;
@@ -58,11 +63,11 @@ public class TbUser implements Serializable {
         this.sex = sex;
     }
 
-    public String getJointime() {
+    public Date getJointime() {
         return jointime;
     }
 
-    public void setJointime(String jointime) {
+    public void setJointime(Date jointime) {
         this.jointime = jointime;
     }
 

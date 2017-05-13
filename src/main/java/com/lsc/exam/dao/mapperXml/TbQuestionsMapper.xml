@@ -6,7 +6,6 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
     <result column="pointId" jdbcType="VARCHAR" property="pointid" />
-    <result column="stem" jdbcType="VARCHAR" property="stem" />
     <result column="choice1" jdbcType="VARCHAR" property="choice1" />
     <result column="choice2" jdbcType="VARCHAR" property="choice2" />
     <result column="choice3" jdbcType="VARCHAR" property="choice3" />
@@ -19,6 +18,9 @@
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="lessonid" jdbcType="INTEGER" property="lessonid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lsc.exam.dao.model.TbQuestions">
+    <result column="stem" jdbcType="LONGVARCHAR" property="stem" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,9 +81,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, type, difficulty, pointId, stem, choice1, choice2, choice3, choice4, answer, 
-    userId, createTime, userName, knowledgeName, score, status, lessonid
+    id, type, difficulty, pointId, choice1, choice2, choice3, choice4, answer, userId, 
+    createTime, userName, knowledgeName, score, status, lessonid
   </sql>
+  <sql id="Blob_Column_List">
+    stem
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.lsc.exam.dao.model.TbQuestionsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_questions
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.lsc.exam.dao.model.TbQuestionsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -104,9 +125,11 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from tb_questions
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -122,17 +145,17 @@
   </delete>
   <insert id="insert" parameterType="com.lsc.exam.dao.model.TbQuestions">
     insert into tb_questions (id, type, difficulty, 
-      pointId, stem, choice1, 
-      choice2, choice3, choice4, 
-      answer, userId, createTime, 
-      userName, knowledgeName, score, 
-      status, lessonid)
+      pointId, choice1, choice2, 
+      choice3, choice4, answer, 
+      userId, createTime, userName, 
+      knowledgeName, score, status, 
+      lessonid, stem)
     values (#{id,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{difficulty,jdbcType=DOUBLE}, 
-      #{pointid,jdbcType=VARCHAR}, #{stem,jdbcType=VARCHAR}, #{choice1,jdbcType=VARCHAR}, 
-      #{choice2,jdbcType=VARCHAR}, #{choice3,jdbcType=VARCHAR}, #{choice4,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{username,jdbcType=VARCHAR}, #{knowledgename,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{lessonid,jdbcType=INTEGER})
+      #{pointid,jdbcType=VARCHAR}, #{choice1,jdbcType=VARCHAR}, #{choice2,jdbcType=VARCHAR}, 
+      #{choice3,jdbcType=VARCHAR}, #{choice4,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, 
+      #{knowledgename,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{lessonid,jdbcType=INTEGER}, #{stem,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.lsc.exam.dao.model.TbQuestions">
     insert into tb_questions
@@ -148,9 +171,6 @@
       </if>
       <if test="pointid != null">
         pointId,
-      </if>
-      <if test="stem != null">
-        stem,
       </if>
       <if test="choice1 != null">
         choice1,
@@ -188,6 +208,9 @@
       <if test="lessonid != null">
         lessonid,
       </if>
+      <if test="stem != null">
+        stem,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -201,9 +224,6 @@
       </if>
       <if test="pointid != null">
         #{pointid,jdbcType=VARCHAR},
-      </if>
-      <if test="stem != null">
-        #{stem,jdbcType=VARCHAR},
       </if>
       <if test="choice1 != null">
         #{choice1,jdbcType=VARCHAR},
@@ -241,6 +261,9 @@
       <if test="lessonid != null">
         #{lessonid,jdbcType=INTEGER},
       </if>
+      <if test="stem != null">
+        #{stem,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.lsc.exam.dao.model.TbQuestionsExample" resultType="java.lang.Long">
@@ -263,9 +286,6 @@
       </if>
       <if test="record.pointid != null">
         pointId = #{record.pointid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.stem != null">
-        stem = #{record.stem,jdbcType=VARCHAR},
       </if>
       <if test="record.choice1 != null">
         choice1 = #{record.choice1,jdbcType=VARCHAR},
@@ -303,7 +323,33 @@
       <if test="record.lessonid != null">
         lessonid = #{record.lessonid,jdbcType=INTEGER},
       </if>
+      <if test="record.stem != null">
+        stem = #{record.stem,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update tb_questions
+    set id = #{record.id,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=INTEGER},
+      difficulty = #{record.difficulty,jdbcType=DOUBLE},
+      pointId = #{record.pointid,jdbcType=VARCHAR},
+      choice1 = #{record.choice1,jdbcType=VARCHAR},
+      choice2 = #{record.choice2,jdbcType=VARCHAR},
+      choice3 = #{record.choice3,jdbcType=VARCHAR},
+      choice4 = #{record.choice4,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      userName = #{record.username,jdbcType=VARCHAR},
+      knowledgeName = #{record.knowledgename,jdbcType=VARCHAR},
+      score = #{record.score,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      lessonid = #{record.lessonid,jdbcType=INTEGER},
+      stem = #{record.stem,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -314,7 +360,6 @@
       type = #{record.type,jdbcType=INTEGER},
       difficulty = #{record.difficulty,jdbcType=DOUBLE},
       pointId = #{record.pointid,jdbcType=VARCHAR},
-      stem = #{record.stem,jdbcType=VARCHAR},
       choice1 = #{record.choice1,jdbcType=VARCHAR},
       choice2 = #{record.choice2,jdbcType=VARCHAR},
       choice3 = #{record.choice3,jdbcType=VARCHAR},
@@ -342,9 +387,6 @@
       </if>
       <if test="pointid != null">
         pointId = #{pointid,jdbcType=VARCHAR},
-      </if>
-      <if test="stem != null">
-        stem = #{stem,jdbcType=VARCHAR},
       </if>
       <if test="choice1 != null">
         choice1 = #{choice1,jdbcType=VARCHAR},
@@ -382,7 +424,30 @@
       <if test="lessonid != null">
         lessonid = #{lessonid,jdbcType=INTEGER},
       </if>
+      <if test="stem != null">
+        stem = #{stem,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.lsc.exam.dao.model.TbQuestions">
+    update tb_questions
+    set type = #{type,jdbcType=INTEGER},
+      difficulty = #{difficulty,jdbcType=DOUBLE},
+      pointId = #{pointid,jdbcType=VARCHAR},
+      choice1 = #{choice1,jdbcType=VARCHAR},
+      choice2 = #{choice2,jdbcType=VARCHAR},
+      choice3 = #{choice3,jdbcType=VARCHAR},
+      choice4 = #{choice4,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      userName = #{username,jdbcType=VARCHAR},
+      knowledgeName = #{knowledgename,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      lessonid = #{lessonid,jdbcType=INTEGER},
+      stem = #{stem,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.lsc.exam.dao.model.TbQuestions">
@@ -390,7 +455,6 @@
     set type = #{type,jdbcType=INTEGER},
       difficulty = #{difficulty,jdbcType=DOUBLE},
       pointId = #{pointid,jdbcType=VARCHAR},
-      stem = #{stem,jdbcType=VARCHAR},
       choice1 = #{choice1,jdbcType=VARCHAR},
       choice2 = #{choice2,jdbcType=VARCHAR},
       choice3 = #{choice3,jdbcType=VARCHAR},

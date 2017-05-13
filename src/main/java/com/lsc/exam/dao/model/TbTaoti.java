@@ -12,6 +12,8 @@ public class TbTaoti implements Serializable {
 
     private Date jointime;
 
+    private Integer status;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -46,6 +48,14 @@ public class TbTaoti implements Serializable {
         this.jointime = jointime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -56,6 +66,7 @@ public class TbTaoti implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", lessonid=").append(lessonid);
         sb.append(", jointime=").append(jointime);
+        sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
     }
@@ -75,7 +86,8 @@ public class TbTaoti implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getLessonid() == null ? other.getLessonid() == null : this.getLessonid().equals(other.getLessonid()))
-            && (this.getJointime() == null ? other.getJointime() == null : this.getJointime().equals(other.getJointime()));
+            && (this.getJointime() == null ? other.getJointime() == null : this.getJointime().equals(other.getJointime()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -86,6 +98,7 @@ public class TbTaoti implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getLessonid() == null) ? 0 : getLessonid().hashCode());
         result = prime * result + ((getJointime() == null) ? 0 : getJointime().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }

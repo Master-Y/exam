@@ -41,7 +41,7 @@ public class QustionController extends BaseController {
                                    @RequestParam(required=false,defaultValue = "1" ,value = "page") int page,
                                    HttpServletRequest request){
         TbQuestionsExample tbQuestionsExample= new TbQuestionsExample();
-        TbQuestionsExample.Criteria criteria = tbQuestionsExample.createCriteria();
+        TbQuestionsExample.Criteria criteria = tbQuestionsExample.createCriteria().andTypeEqualTo(questions.getType());
         if(questions.getId() != null){
             criteria.andIdEqualTo(questions.getId());
         }if(questions.getPointid() != null){

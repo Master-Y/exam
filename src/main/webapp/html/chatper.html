@@ -154,9 +154,9 @@
     	<div class="ibg"id="div">
 			<div class="idiv" id="iDiv">
 				<div class="ifont">添加新章节</div>
-				<input style="margin:6px auto;width:86%" type="text" placeholder="请输入章节名" class="input-sm form-control"> 
+				<input style="margin:6px auto;width:86%" type="text" placeholder="请输入章节名" class="input-sm form-control"id="name"> 
 				<div class="input-group" style="margin:15px auto;">
-					<button type="button" class="btn btn-sm btn-primary"> 确定</button> 							
+					<button type="button" class="btn btn-sm btn-primary"id="addzj"> 确定</button> 							
 					<button  style="margin-left:30px" type="button" class="btn btn-sm btn-primary"id="qx"> 取消</button> 
 				 </div>
 			</div>
@@ -168,6 +168,7 @@
     <script src="js/plugins/iCheck/icheck.min.js"></script>
     <script src="js/demo/peity-demo.min.js"></script>
 	<script>
+	var flag = getQueryString("flag");
 		$(document).ready(function() {
 			$(".i-checks").iCheck({
 				checkboxClass : "icheckbox_square-green",
@@ -180,9 +181,21 @@
 			$("#qx").click(function(){
 				$("#div").hide();
 			});
+			$("#addzj").click(function(){
+				var name = $("#name").val();
+				var parm={chaptername:name,lessonid:flag};
+				var url = domain+"chapter/insertchapter";
+				$.post(url,parm,function(data){
+					if(data.code=="1"){
+						$("#div").hide();
+						location.reload();	
+					}
+					
+				});
+			});
 		});
 		   function showPage(page){
-				var parm ={page:page,lessonid:"8"};
+				var parm ={page:page,lessonid:flag};
 				var url = domain +"chapter/querychapter";
 				$.post(url,parm,function(data){
 					var htmls=[];
@@ -206,6 +219,11 @@
 					}
 					$("#body").append(htmls.join());
 				});
+			}
+		   function getQueryString(name) {  
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+			    var r = location.search.substr(1).match(reg);  
+			    if (r != null) return unescape(decodeURI(r[2])); return null;  
 			}
 	</script>
 	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>

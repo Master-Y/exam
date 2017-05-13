@@ -170,9 +170,9 @@
 			$("#add").click(function(){
 				$("#div").show();
 				if(flag=="1"||flag=="2"){
-					$("#an1").hide();
+					
 				}else{
-					$("#an2").hide();
+					$("#choice").hide();
 				}
 			});
 			$("#qx").click(function(){
@@ -212,7 +212,7 @@
 			$.post(url,parm,function(data){
 				var htmls=[];
 				for(var i in data.data){
-					if(flag=="1"){
+					if(flag=="1"||flag=="2"){
 					var html ='<div class="col-sm-4">'
 							 +	'	<div class="ibox">'
 							 +	'		<div class="ibox-title">'

@@ -83,7 +83,7 @@ public class Population {
         TbQuestionsExample tbQuestionsExample = new TbQuestionsExample();
         tbQuestionsExample.createCriteria().andTypeEqualTo(type).andPointidIn(idString);
         List<TbQuestions> singleArray = tbQuestionsService.selectByExample(tbQuestionsExample);
-        if (singleArray.size() < qustionNum) {
+        if (singleArray != null && singleArray.size() < qustionNum) {
             return;
         }
         TbQuestions tmpQuestion;

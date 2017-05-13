@@ -16,15 +16,21 @@ public interface TbQuestionsMapper {
 
     int insertSelective(TbQuestions record);
 
+    List<TbQuestions> selectByExampleWithBLOBs(TbQuestionsExample example);
+
     List<TbQuestions> selectByExample(TbQuestionsExample example);
 
     TbQuestions selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") TbQuestions record, @Param("example") TbQuestionsExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") TbQuestions record, @Param("example") TbQuestionsExample example);
+
     int updateByExample(@Param("record") TbQuestions record, @Param("example") TbQuestionsExample example);
 
     int updateByPrimaryKeySelective(TbQuestions record);
+
+    int updateByPrimaryKeyWithBLOBs(TbQuestions record);
 
     int updateByPrimaryKey(TbQuestions record);
 }

@@ -78,8 +78,11 @@ public class ChapterController extends BaseController {
         criteria.andChapternameEqualTo(chapter.getChaptername());
         TbChapter tbchapter = tbChapterService.selectFirstByExample(tbChapterExample);
         if(tbchapter == null){
+        	tbchapter = new TbChapter();
             tbchapter.setStatus(BaseConstants.ALLOW);
-            int count = tbChapterService.insertSelective(chapter);
+            tbchapter.setLessonid(chapter.getLessonid());
+            tbchapter.setChaptername(chapter.getChaptername());
+            int count = tbChapterService.insertSelective(tbchapter);
             if(count == 1){
                 BaseResult result = new BaseResult(ResultEnum.SUCCESS,null);
                 return result;

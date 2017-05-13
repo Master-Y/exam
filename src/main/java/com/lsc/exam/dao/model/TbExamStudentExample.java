@@ -257,52 +257,62 @@ public class TbExamStudentExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameEqualTo(Integer value) {
+        public Criteria andTaotinameEqualTo(String value) {
             addCriterion("taotiName =", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameNotEqualTo(Integer value) {
+        public Criteria andTaotinameNotEqualTo(String value) {
             addCriterion("taotiName <>", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameGreaterThan(Integer value) {
+        public Criteria andTaotinameGreaterThan(String value) {
             addCriterion("taotiName >", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTaotinameGreaterThanOrEqualTo(String value) {
             addCriterion("taotiName >=", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameLessThan(Integer value) {
+        public Criteria andTaotinameLessThan(String value) {
             addCriterion("taotiName <", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameLessThanOrEqualTo(Integer value) {
+        public Criteria andTaotinameLessThanOrEqualTo(String value) {
             addCriterion("taotiName <=", value, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameIn(List<Integer> values) {
+        public Criteria andTaotinameLike(String value) {
+            addCriterion("taotiName like", value, "taotiname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaotinameNotLike(String value) {
+            addCriterion("taotiName not like", value, "taotiname");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaotinameIn(List<String> values) {
             addCriterion("taotiName in", values, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameNotIn(List<Integer> values) {
+        public Criteria andTaotinameNotIn(List<String> values) {
             addCriterion("taotiName not in", values, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameBetween(Integer value1, Integer value2) {
+        public Criteria andTaotinameBetween(String value1, String value2) {
             addCriterion("taotiName between", value1, value2, "taotiname");
             return (Criteria) this;
         }
 
-        public Criteria andTaotinameNotBetween(Integer value1, Integer value2) {
+        public Criteria andTaotinameNotBetween(String value1, String value2) {
             addCriterion("taotiName not between", value1, value2, "taotiname");
             return (Criteria) this;
         }
